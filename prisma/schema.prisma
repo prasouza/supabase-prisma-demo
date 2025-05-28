@@ -1,0 +1,16 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")   // conexão com pooler para runtime
+  directUrl = env("DIRECT_URL")     // conexão direta para migrações
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Cliente {
+  id    Int    @id @default(autoincrement())
+  nome  String @db.VarChar(50)
+  idade Int
+  uf    String @db.Char(2)
+}
